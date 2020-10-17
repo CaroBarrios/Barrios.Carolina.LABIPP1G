@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1602889523 source:c:\users\carolina.barrios\desktop\parciallab1g\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1602889530 c:\users\carolina.barrios\desktop\parciallab1g\utn.h
+
+1602895646 source:c:\users\carolina.barrios\desktop\parciallab1g\bicicleta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"bicicleta.h"
+	"dataStore.h"
+	"tipo.h"
+	"color.h"
+
+1602895660 c:\users\carolina.barrios\desktop\parciallab1g\bicicleta.h
+	"tipo.h"
+	"color.h"
+
+1602889282 c:\users\carolina.barrios\desktop\parciallab1g\datastore.h
+
+1602891575 source:c:\users\carolina.barrios\desktop\parciallab1g\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"tipo.h"
+
+1602890449 c:\users\carolina.barrios\desktop\parciallab1g\tipo.h
+
+1602896471 source:c:\users\carolina.barrios\desktop\parciallab1g\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"bicicleta.h"
+	"tipo.h"
+	"servicio.h"
+
+1602894743 c:\users\carolina.barrios\desktop\parciallab1g\color.h
+
+1602894874 source:c:\users\carolina.barrios\desktop\parciallab1g\color.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"color.h"
+
+1602896293 source:c:\users\carolina.barrios\desktop\parciallab1g\servicio.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"servicio.h"
+
+1602896507 c:\users\carolina.barrios\desktop\parciallab1g\servicio.h
+
