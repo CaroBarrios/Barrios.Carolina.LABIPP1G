@@ -46,8 +46,16 @@ int printServicios(eServicio* list, int length)
 	return answer;
 }
 
-
-int obtenerDescripcionServicio(eServicio* list, int len, int id, char descripcion)
+/**
+* \brief to get the description of the servicio
+* \param list eServicio* Pointer to array of servicio
+* \param len int Array length
+* \param id Position where a servicio will be registered
+* \param descripcion description of servicio
+* \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+*
+*/
+int obtenerDescripcionServicio(eServicio* list, int len, int id, char descripcion[])
 {
     int answer=-1;
 

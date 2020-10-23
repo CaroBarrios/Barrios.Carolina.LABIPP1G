@@ -4,33 +4,36 @@
 #include "bicicleta.h"
 #include "tipo.h"
 #include "servicio.h"
+#include "trabajo.h"
 
 #define QTY_BICICLETA 100
 #define QTY_TIPO 4
 #define QTY_COLOR 5
 #define QTY_SERVICIO 4
+#define QTY_TRABAJO 100
 
 int main()
 {
     eBicicleta arrayBicicleta[QTY_BICICLETA];
+    eTrabajo arrayTrabajo[QTY_TRABAJO];
     eTipo arrayTipo[QTY_TIPO]={
-        {1000, "Rutera"},
-        {1001, "Carrera"},
-        {1002, "Mountain"},
-        {1003, "BMX"},
+        {1000,"Rutera"},
+        {1001,"Carrera"},
+        {1002,"Mountain"},
+        {1003,"BMX"}
     };
     eColor arrayColor[QTY_COLOR]={
-        {5000, "Gris"},
-        {5001, "Negro"},
-        {5002, "Blanco"},
-        {5003, "Azul"},
-        {5004, "Rojo"},
+        {5000,"Gris"},
+        {5001,"Negro"},
+        {5002,"Blanco"},
+        {5003,"Azul"},
+        {5004,"Rojo"}
     };
     eServicio arrayServicio[QTY_SERVICIO]={
-        {20000, "Limpieza"},
-        {20001, "Parche"},
-        {20002, "Centrado"},
-        {20003, "Cadena"},
+        {20000,"Limpieza"},
+        {20001,"Parche"},
+        {20002,"Centrado"},
+        {20003,"Cadena"}
     };
 
     int opcion;
@@ -38,6 +41,8 @@ int main()
     int auxiliaryIndex;
     int triggerRegister = 0;
     int auxiliaryId;
+    int auxiliaryIndexTrabajo;
+    int idTrabajos = 0;
 
 
     if(initBicicletas(arrayBicicleta,QTY_BICICLETA) == 0)
@@ -49,7 +54,16 @@ int main()
         printf("Problemas al inicializar bicicletas\n\n");
     }
 
-    idBicicletas += hardcodearBicicleta(arrayBicicleta, QTY_BICICLETA, 3);
+    if(initTrabajos(arrayTrabajo,QTY_TRABAJO) == 0)
+    {
+        printf("Trabajos inicializados con exito!!\n\n");
+    }
+    else
+    {
+        printf("Problemas al inicializar trabajos\n\n");
+    }
+
+    idBicicletas += hardcodearBicicleta(arrayBicicleta, QTY_BICICLETA, 10);
 
     do
     {
@@ -65,7 +79,7 @@ int main()
                              " 9. LISTAR TRABAJOS\n"
                              " 10. SALIR\n\n"
                              " Ingrese una opcion: ",
-                             " Opcion invalida. Vuelva a intentarlo\n\n", 1, 10, 3 )) == 0 )
+                             " Opcion invalida. Vuelva a intentarlo, solo puede ingresar numeros de 1 al 10.\n\n", 1, 10, 3 )) == 0 )
         {
 
             switch(opcion)
@@ -91,13 +105,13 @@ int main()
                 {
                     printBicicletas(arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR);
                     if(utn_getNumero(&auxiliaryId,"\n\nIndique el numero de ID de la bicicleta que desea modificar: ",
-                                                  "\nID invalid\n\n",0,idBicicletas,0) == 0)
+                                                  "\nID invalido\n\n",0,idBicicletas,0) == 0)
                     {
                         auxiliaryIndex = findBicicletaById(arrayBicicleta,QTY_BICICLETA,auxiliaryId, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR);
                         if( auxiliaryIndex >= 0 &&
                             menuModifyBicicletas(arrayBicicleta,QTY_BICICLETA,auxiliaryIndex) == 0)
                             {
-                                printf("\nLa modificacion se realizó con exito\n\n");
+                                printf("\nLa modificacion se realizo con exito\n\n");
                             }
                     }
                 }
@@ -143,8 +157,25 @@ int main()
                 printServicios(arrayServicio, QTY_SERVICIO);
                 break;
             case 8:
+                system("cls");
+                auxiliaryIndexTrabajo = getEmptyIndexTrabajos(arrayTrabajo,QTY_TRABAJO);
+                if(auxiliaryIndexTrabajo >= 0)
+                {
+
+                    if(addTrabajo(arrayTrabajo,QTY_TRABAJO,auxiliaryIndexTrabajo,&idTrabajos, arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR) == 0)
+                    {
+                        idTrabajos++;
+                        printf("\nAlta de trabajo con exito!!\n\n");
+                    }
+                }
+                else
+                {
+                    printf("\nNo hay mas lugar\n\n");
+                }
                 break;
             case 9:
+                system("cls");
+                printTrabajos(arrayTrabajo, QTY_TRABAJO, arrayBicicleta, QTY_BICICLETA, arrayServicio, QTY_SERVICIO);
                 break;
             }
             system("pause");

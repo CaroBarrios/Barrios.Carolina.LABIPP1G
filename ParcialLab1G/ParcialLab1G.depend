@@ -56,3 +56,76 @@
 
 1602896507 c:\users\carolina.barrios\desktop\parciallab1g\servicio.h
 
+1603451618 source:c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\main.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"bicicleta.h"
+	"tipo.h"
+	"servicio.h"
+	"trabajo.h"
+
+1602889530 c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\utn.h
+
+1603450457 c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\bicicleta.h
+	"tipo.h"
+	"color.h"
+
+1603154207 c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\tipo.h
+
+1603154154 c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\color.h
+
+1603420455 c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\servicio.h
+
+1603452108 source:c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\bicicleta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"bicicleta.h"
+	"dataStore.h"
+	"tipo.h"
+	"color.h"
+
+1603451180 c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\datastore.h
+
+1603158984 source:c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\color.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"color.h"
+
+1603420477 source:c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\servicio.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"servicio.h"
+
+1603158551 source:c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"tipo.h"
+
+1602889523 source:c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"utn.h"
+
+1603419197 c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\trabajo.h
+	"bicicleta.h"
+	"servicio.h"
+	"fecha.h"
+
+1602885413 c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\fecha.h
+
+1603448806 source:c:\users\carolina.barrios\desktop\barrios.carolina.labipp1g\parciallab1g\trabajo.c
+	<stdio.h>
+	<stdlib.h>
+	"utn.h"
+	"trabajo.h"
+	"bicicleta.h"
+	"servicio.h"
+

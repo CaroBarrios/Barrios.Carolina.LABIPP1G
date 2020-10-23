@@ -11,6 +11,6 @@ typedef struct{
 
 int servicio_print(eServicio* pElement);
 int printServicios(eServicio* list, int length);
-int obtenerDescripcionServicio(eServicio* list, int len, int id, char descripcion);
+int obtenerDescripcionServicio(eServicio* list, int len, int id, char descripcion[]);
 
 #endif // SERVICIO_H_INCLUDED

@@ -10,6 +10,6 @@ typedef struct{
 
 int color_print(eColor* pElement);
 int printColores(eColor* list, int length);
-int obtenerDescripcionColor(eColor* list, int len, int id, char descripcion);
+int obtenerDescripcionColor(eColor* list, int len, int id, char descripcion[]);
 
 #endif // COLOR_H_INCLUDED

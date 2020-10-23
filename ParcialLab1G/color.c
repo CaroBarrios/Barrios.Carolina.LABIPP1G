@@ -5,7 +5,7 @@
 
 /**
  * \brief Print the content of color in a position
- * \param eColor Pointer to the product to be printed
+ * \param pElement eColor* Pointer to the product to be printed
  * \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
@@ -24,7 +24,7 @@ int color_print(eColor* pElement)
 
 /**
 * \brief Print the content of color array
-* \param list eTColor* Pointer to array of tipo
+* \param list eColor* Pointer to array of color
 * \param length int Array length
 * \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 *
@@ -46,8 +46,16 @@ int printColores(eColor* list, int length)
 	return answer;
 }
 
-
-int obtenerDescripcionColor(eColor* list, int len, int id, char nombreColor)
+/**
+* \brief to get the description of the color
+* \param list eColor* Pointer to array of color
+* \param len int Array length
+* \param id Position where an color will be registered
+* \param descripcion description of color
+* \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+*
+*/
+int obtenerDescripcionColor(eColor* list, int len, int id, char nombreColor[])
 {
     int answer=-1;
 

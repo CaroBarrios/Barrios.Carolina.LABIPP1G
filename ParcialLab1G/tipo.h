@@ -10,6 +10,6 @@ typedef struct{
 
 int tipo_print(eTipo* pElement);
 int printTipos(eTipo* list, int length);
-int obtenerDescripcionTipo(eTipo* list, int len, int id, char descripcion);
+int obtenerDescripcionTipo(eTipo* list, int len, int id, char descripcion[]);
 
 #endif // TIPO_H_INCLUDED

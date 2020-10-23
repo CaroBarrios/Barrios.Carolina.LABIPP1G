@@ -4,8 +4,8 @@
 #include "tipo.h"
 
 /**
- * \brief Print the content of tipos in a position
- * \param eTipo Pointer to the product to be printed
+ * \brief Print the content of tipo in a position
+ * \param pElement eTipo* Pointer to the product to be printed
  * \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
@@ -46,8 +46,16 @@ int printTipos(eTipo* list, int length)
 	return answer;
 }
 
-
-int obtenerDescripcionTipo(eTipo* list, int len, int id, char descripcion)
+/**
+* \brief to get the description of the tipo
+* \param list eTipo* Pointer to array of tipo
+* \param len int Array length
+* \param id Position where an tipo will be registered
+* \param descripcion description of tipo
+* \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+*
+*/
+int obtenerDescripcionTipo(eTipo* list, int len, int id, char descripcion[])
 {
     int answer=-1;
 
