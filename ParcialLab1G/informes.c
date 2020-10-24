@@ -7,7 +7,6 @@
 #include "tipo.h"
 #include "utn.h"
 
-
 int listarBicicletasDeCadaTipo(eBicicleta* list, int len, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor, eCliente* listCliente, int lenCliente)
 {
     int answer=-1;
@@ -19,11 +18,11 @@ int listarBicicletasDeCadaTipo(eBicicleta* list, int len, eTipo* listTipo, int l
     {
         system("cls");
         printf("****Listado de bicicletas de cada tipo****\n");
-        for(int d = 0; d<lenTipo; d++)
+        for(int d=0; d<lenTipo; d++)
         {
             flag=0;
             obtenerDescripcionTipo(listTipo, lenTipo, list[d].id, tipo);
-            printf("tipo: %s\n", tipo);
+            printf("\nTipo: %s\n", tipo);
             for(int i=0; i<len; i++)
             {
                 if(list[i].isEmpty == 0 && list[i].idTipo == listTipo[d].id)
@@ -34,7 +33,7 @@ int listarBicicletasDeCadaTipo(eBicicleta* list, int len, eTipo* listTipo, int l
             }
             if(flag==0)
             {
-                printf("No hay biciletas de tipo %s\n\n", tipo);
+                printf("No hay bicicletas de tipo %s\n\n", tipo);
             }
 
         }
@@ -46,7 +45,6 @@ int listarBicicletasDeCadaTipo(eBicicleta* list, int len, eTipo* listTipo, int l
 int listarBicicletasPorTipo(eBicicleta* list, int len, eColor* listColor, int lenColor, eTipo* listTipo, int lenTipo, eCliente* listCliente, int lenCliente)
 {
     int answer=-1;
-    int idTipo=0;
     int flag = 0;
     char tipo[20];
 
@@ -55,13 +53,13 @@ int listarBicicletasPorTipo(eBicicleta* list, int len, eColor* listColor, int le
         system("cls");
         printTipos(listTipo, lenTipo);
         if (utn_getNumero(&list->idTipo,"\nIngrese el id del tipo de bicicleta: ",
-                          "\nERROR, el dato ingresado no es un tipo de bicicleta. Solo puede ingresar tipos del 5000 al 5004 sin letras ni caracteres especiales.\n",1000,1003,2) == 0)
+                          "\nERROR, el dato ingresado no es un tipo de bicicleta. Solo puede ingresar tipos del 1000 al 1003 sin letras ni caracteres especiales.\n",1000,1003,2) == 0)
         {
             obtenerDescripcionTipo(listTipo, lenTipo, list->idTipo, tipo);
             printf("\nBicicletas que tienen el tipo %s\n", tipo);
             for(int i=0; i<len; i++)
             {
-                if(list[i].isEmpty == 0 && list[i].idTipo == idTipo)
+                if(list[i].isEmpty == 0 && list[i].idTipo == listTipo->id)
                 {
                     bicicletaPrint(&list[i], listTipo, lenTipo, listColor, lenColor, listCliente, lenCliente);
                     flag = 1;
@@ -71,9 +69,7 @@ int listarBicicletasPorTipo(eBicicleta* list, int len, eColor* listColor, int le
             {
                 printf("\nNo hay bicletas con el tipo %s\n\n", tipo);
             }
-
         }
-
         answer=0;
     }
     return answer;
@@ -82,7 +78,6 @@ int listarBicicletasPorTipo(eBicicleta* list, int len, eColor* listColor, int le
 int listarBicicletasPorColor(eBicicleta* list, int len, eColor* listColor, int lenColor, eTipo* listTipo, int lenTipo, eCliente* listCliente, int lenCliente)
 {
     int answer=-1;
-    int idColor=0;
     int flag = 0;
     char color[20];
 
@@ -97,7 +92,7 @@ int listarBicicletasPorColor(eBicicleta* list, int len, eColor* listColor, int l
             printf("\nBicicletas que tienen el color %s: \n", color);
             for(int i=0; i<len; i++)
             {
-                if(list[i].isEmpty == 0 && list[i].idColor == idColor)
+                if(list[i].isEmpty == 0 && list[i].idColor == listColor->id)
                 {
                     bicicletaPrint(&list[i], listTipo, lenTipo, listColor, lenColor, listCliente, lenCliente);
                     flag = 1;
@@ -130,14 +125,16 @@ int menuModifyInformes(eBicicleta* list, int len, eColor* listColor, int lenColo
     {
         do
         {
-            if ((utn_getNumero (&optionMenu,"\nLISTADO DE INFORMES\n\n"
+            if ((utn_getNumero (&optionMenu,"\n-----------------LISTADO DE INFORMES-----------------\n\n"
                                 "1. Mostrar bicicletas del color seleccionado por el usuario\n"
                                 "2. Mostrar bicicletas de un tipo seleccionado\n"
                                 "3. Informar el o las bicicletas de menor rodado\n"
                                 "4. Mostrar un listado de las bicicletas separadas por tipo\n"
-                                "5. Volver\n\n"
+                                "5. Elegir un color y un tipo y contar cuantas bicicletas hay de ese color y ese tipo\n"
+                                "6. Mostrar el o los colores mas elegidos por los clientes\n"
+                                "7. Volver\n\n"
                                 "Ingrese una opcion: ",
-                                "Esta opcion no es valida. Intente nuevamente.\n\n", 1, 5, 3))==0)
+                                "Esta opcion no es valida. Intente nuevamente.\n\n", 1, 7, 3))==0)
             {
 
                 switch(optionMenu)
@@ -153,10 +150,14 @@ int menuModifyInformes(eBicicleta* list, int len, eColor* listColor, int lenColo
                 case 4:
                     listarBicicletasDeCadaTipo(list, len, listTipo, lenTipo, listColor, lenColor, listCliente, lenCliente);
                     break;
+                case 5:
+                    break;
+                case 6:
+                    break;
                 }
             }
         }
-        while (optionMenu!=5);
+        while (optionMenu!=7);
     }
     return answer;
 }
