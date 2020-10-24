@@ -17,6 +17,6 @@ int initTrabajos(eTrabajo* list, int len);
 int getEmptyIndexTrabajos(eTrabajo* list,int len);
 int trabajoPrint(eTrabajo* pElement, eBicicleta* listBicicleta, int lenBicicleta, eServicio* listServicio, int lenServicio);
 int printTrabajos(eTrabajo* list, int length, eBicicleta* listBicicleta, int lenBicicleta, eServicio* listServicio, int lenServicio);
-int addTrabajo(eTrabajo* list, int len, int index, int* id, eBicicleta* listBicicleta, int length, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor);
+int addTrabajo(eTrabajo* list, int len, int index, int* id, eBicicleta* listBicicleta, int length, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor, eCliente* listCliente, int lenCliente);
 
 #endif // TRABAJO_H_INCLUDED

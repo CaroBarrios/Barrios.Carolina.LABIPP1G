@@ -6,6 +6,7 @@
 #include "dataStore.h"
 #include "tipo.h"
 #include "color.h"
+#include "cliente.h"
 
 /**
 * \brief To indicate that all position in the array are empty, this function put the flag (isEmpty) in TRUE in all position of the array
@@ -50,6 +51,7 @@ int hardcodearBicicleta(eBicicleta* list, int len, int cantidad)
             list[i].idTipo = idsTipo[i];
             list[i].idColor = idsColor[i];
             list[i].rodado = rodados[i];
+            list[i].idCliente = clientes[i];
             list[i].isEmpty = 0;
             error++;
         }
@@ -93,11 +95,12 @@ int getEmptyIndexBicicletas(eBicicleta* list,int len)
 * \return Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
 *
 */
-int addBicicletas(eBicicleta* list, int len, int index, int* id)
+int addBicicletas(eBicicleta* list, int len, int index, int* id, eCliente* listCliente, int lenCliente)
 {
     int answer = -1;
     eBicicleta bufferBicicleta;
 
+    system("cls");
     printf("***************ALTA BICICLETA***************");
 
     if(list != NULL && len > 0 && index < len && index >= 0 && id != NULL)
@@ -118,14 +121,17 @@ int addBicicletas(eBicicleta* list, int len, int index, int* id)
                               "\n5003 - Azul"
                               "\n5004 - Rojo\n"
                               "\nIngrese el numero del color de bicicleta: ",
-                              "\nERROR, el dato ingresado no es un color de bicileta. Solo puede ingresar tipos del 5000 al 5004 sin letras ni caracteres especiales.\n",5000,5004,2) == 0 &&
+                              "\nERROR, el dato ingresado no es un color de bicileta. Solo puede ingresar colores del 5000 al 5004 sin letras ni caracteres especiales.\n",5000,5004,2) == 0 &&
                 utn_getNumero(&bufferBicicleta.rodado,"\n*****Rodados*****"
                               "\n20"
                               "\n26"
                               "\n27.5"
                               "\n29"
                               "\nIngrese el rodado de bicicleta dentro de las opciones arriba mencionadas: ",
-                              "\nERROR, el dato ingresado no es un rodado de bicileta. Solo puede ingresar tipos del 20 al 29 sin letras ni caracteres especiales.\n",20,29,2) == 0)
+                              "\nERROR, el dato ingresado no es un rodado de bicileta. Solo puede ingresar rodados del 20 al 29 sin letras ni caracteres especiales.\n",20,29,2) == 0 &&
+                printCliente(listCliente,lenCliente) == 0 &&
+                utn_getNumero(&bufferBicicleta.idCliente,"\nIngrese el id del cliente: ",
+                              "\nERROR, el dato ingresado no es un id de cliente. Solo puede ingresar clientes del 6000 al 6004 sin letras ni caracteres especiales.\n",6000,6004,2) == 0)
         {
             answer = 0;
             bufferBicicleta.id = *id;
@@ -146,20 +152,22 @@ int addBicicletas(eBicicleta* list, int len, int index, int* id)
 * \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 *
 */
-int bicicletaPrint(eBicicleta* pElement, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor)
+int bicicletaPrint(eBicicleta* pElement, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor, eCliente* listCliente, int lenCliente)
 {
     int answer = -1;
     char descripcionColor[20];
     char descripcionTipo[20];
+    char descripcionCliente[20];
 
     if((obtenerDescripcionColor(listColor, lenColor, pElement->idColor, descripcionColor)) == 0
-            && (obtenerDescripcionTipo(listTipo, lenTipo, pElement->idTipo, descripcionTipo) == 0))
+            && (obtenerDescripcionTipo(listTipo, lenTipo, pElement->idTipo, descripcionTipo) == 0)
+            && (obtenerDescripcionCliente(listCliente, lenCliente, pElement->idCliente, descripcionCliente) == 0))
     {
         if(pElement != NULL && pElement->isEmpty == 0)
         {
             answer = 0;
 
-            printf ("%3d              %10s               %10s                 %10s                %2d   \n\n", pElement->id, pElement->marca, descripcionTipo, descripcionColor, pElement->rodado);
+            printf ("%3d              %10s               %10s                 %10s                %2d           %10s\n\n", pElement->id, pElement->marca, descripcionTipo, descripcionColor, pElement->rodado, descripcionCliente);
         }
     }
     else
@@ -180,7 +188,7 @@ int bicicletaPrint(eBicicleta* pElement, eTipo* listTipo, int lenTipo, eColor* l
 * \return Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
 *
 */
-int printBicicletas(eBicicleta* list, int length, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor)
+int printBicicletas(eBicicleta* list, int length, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor, eCliente* listCliente, int lenCliente)
 {
     int answer = -1;
     int flag = 0;
@@ -188,13 +196,13 @@ int printBicicletas(eBicicleta* list, int length, eTipo* listTipo, int lenTipo, 
     if(list != NULL && length > 0)
     {
         answer = 0;
-        printf ("\n-------------------------------------------Datos Bicicleta----------------------------------------------\n\n");
-        printf ("ID                     Marca                      Tipo                        Color           Rodado\n\n");
+        printf ("\n--------------------------------------------------Datos Bicicleta------------------------------------------------------\n\n");
+        printf ("ID                     Marca                      Tipo                        Color           Rodado            Cliente  \n\n");
         for(int i=0; i<length; i++)
         {
             if (list[i].isEmpty != 1)
             {
-                bicicletaPrint(&list[i], listTipo, lenTipo, listColor, lenColor);
+                bicicletaPrint(&list[i], listTipo, lenTipo, listColor, lenColor, listCliente, lenCliente);
                 flag = 1;
             }
         }
@@ -218,7 +226,7 @@ int printBicicletas(eBicicleta* list, int length, eTipo* listTipo, int lenTipo, 
 * \return Returns the index of the position whith the sought value, o if finds the sought value and -1 in case of error
 *
 */
-int findBicicletaById(eBicicleta* list, int len, int id, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor)
+int findBicicletaById(eBicicleta* list, int len, int id, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor, eCliente* listCliente, int lenCliente)
 {
     int answer = -1;
     int i;
@@ -232,7 +240,7 @@ int findBicicletaById(eBicicleta* list, int len, int id, eTipo* listTipo, int le
                 printf("\nLa bicicleta seleccionada es la siguiente: \n\n");
                 printf ("ID                     Marca                    idTipo                      idColor           Rodado\n\n");
                 answer = i;
-                bicicletaPrint(&list[i], &listTipo[i], lenTipo, &listColor[i], lenColor);
+                bicicletaPrint(&list[i], &listTipo[i], lenTipo, &listColor[i], lenColor, listCliente, lenCliente);
                 break;
             }
         }

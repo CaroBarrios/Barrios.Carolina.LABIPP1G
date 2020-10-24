@@ -5,12 +5,15 @@
 #include "tipo.h"
 #include "servicio.h"
 #include "trabajo.h"
+#include "cliente.h"
+#include "informes.h"
 
 #define QTY_BICICLETA 100
 #define QTY_TIPO 4
 #define QTY_COLOR 5
 #define QTY_SERVICIO 4
 #define QTY_TRABAJO 100
+#define QTY_CLIENTE 5
 
 int main()
 {
@@ -34,6 +37,13 @@ int main()
         {20001,"Parche"},
         {20002,"Centrado"},
         {20003,"Cadena"}
+    };
+    eCliente arrayCliente[QTY_CLIENTE]={
+        {6000,"Luis", 'm'},
+        {6001,"Mariana", 's'},
+        {6002,"Juan", 'm'},
+        {6003,"Lucas", 'm'},
+        {6004,"Guadalupe", 's'}
     };
 
     int opcion;
@@ -77,9 +87,10 @@ int main()
                              " 7. LISTAR SERVICIOS\n"
                              " 8. ALTA TRABAJO\n"
                              " 9. LISTAR TRABAJOS\n"
-                             " 10. SALIR\n\n"
+                             " 10. INFORMES\n"
+                             " 11. SALIR\n\n"
                              " Ingrese una opcion: ",
-                             " Opcion invalida. Vuelva a intentarlo, solo puede ingresar numeros de 1 al 10.\n\n", 1, 10, 3 )) == 0 )
+                             " Opcion invalida. Vuelva a intentarlo, solo puede ingresar numeros de 1 al 10.\n\n", 1, 11, 3 )) == 0 )
         {
 
             switch(opcion)
@@ -88,7 +99,7 @@ int main()
                 auxiliaryIndex = getEmptyIndexBicicletas(arrayBicicleta,QTY_BICICLETA);
                 if(auxiliaryIndex >= 0)
                 {
-                    if(addBicicletas(arrayBicicleta,QTY_BICICLETA,auxiliaryIndex,&idBicicletas) == 0)
+                    if(addBicicletas(arrayBicicleta,QTY_BICICLETA,auxiliaryIndex,&idBicicletas, arrayCliente, QTY_CLIENTE) == 0)
                     {
                         idBicicletas++;
                         triggerRegister = 1;
@@ -103,11 +114,11 @@ int main()
             case 2:
                 if (triggerRegister)
                 {
-                    printBicicletas(arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR);
+                    printBicicletas(arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR, arrayCliente, QTY_CLIENTE);
                     if(utn_getNumero(&auxiliaryId,"\n\nIndique el numero de ID de la bicicleta que desea modificar: ",
                                                   "\nID invalido\n\n",0,idBicicletas,0) == 0)
                     {
-                        auxiliaryIndex = findBicicletaById(arrayBicicleta,QTY_BICICLETA,auxiliaryId, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR);
+                        auxiliaryIndex = findBicicletaById(arrayBicicleta,QTY_BICICLETA,auxiliaryId, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR, arrayCliente, QTY_CLIENTE);
                         if( auxiliaryIndex >= 0 &&
                             menuModifyBicicletas(arrayBicicleta,QTY_BICICLETA,auxiliaryIndex) == 0)
                             {
@@ -123,11 +134,11 @@ int main()
             case 3:
                 if (triggerRegister)
                 {
-                    printBicicletas(arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR);
+                    printBicicletas(arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR, arrayCliente, QTY_CLIENTE);
                     if(utn_getNumero(&auxiliaryId,"\n\nIndique el numero del id de la bicicleta que desea eliminar: ",
                                                  "\nID invalido\n\n",0,idBicicletas,0) == 0)
                     {
-                        auxiliaryId = findBicicletaById(arrayBicicleta,QTY_BICICLETA,auxiliaryId, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR);
+                        auxiliaryId = findBicicletaById(arrayBicicleta,QTY_BICICLETA,auxiliaryId, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR, arrayCliente, QTY_CLIENTE);
                         if( auxiliaryId >= 0 &&
                             removeBicicleta(arrayBicicleta,QTY_BICICLETA,auxiliaryId) == 0)
                             {
@@ -142,7 +153,7 @@ int main()
                 break;
             case 4:
                 system("cls");
-                printBicicletas(arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR);
+                printBicicletas(arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR, arrayCliente, QTY_CLIENTE);
                 break;
             case 5:
                 system("cls");
@@ -162,7 +173,7 @@ int main()
                 if(auxiliaryIndexTrabajo >= 0)
                 {
 
-                    if(addTrabajo(arrayTrabajo,QTY_TRABAJO,auxiliaryIndexTrabajo,&idTrabajos, arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR) == 0)
+                    if(addTrabajo(arrayTrabajo,QTY_TRABAJO,auxiliaryIndexTrabajo,&idTrabajos, arrayBicicleta, QTY_BICICLETA, arrayTipo, QTY_TIPO, arrayColor, QTY_COLOR, arrayCliente, QTY_CLIENTE) == 0)
                     {
                         idTrabajos++;
                         printf("\nAlta de trabajo con exito!!\n\n");
@@ -177,12 +188,15 @@ int main()
                 system("cls");
                 printTrabajos(arrayTrabajo, QTY_TRABAJO, arrayBicicleta, QTY_BICICLETA, arrayServicio, QTY_SERVICIO);
                 break;
+            case 10:
+                menuModifyInformes(arrayBicicleta, QTY_BICICLETA, arrayColor, QTY_COLOR, arrayTipo, QTY_TIPO, arrayCliente, QTY_CLIENTE);
+                break;
             }
             system("pause");
             system("cls");
         }
     }
-    while(opcion!=10);
+    while(opcion!=11);
 
     return 0;
 }

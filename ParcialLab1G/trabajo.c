@@ -130,14 +130,14 @@ int printTrabajos(eTrabajo* list, int length, eBicicleta* listBicicleta, int len
 * \return Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
 *
 */
-int addTrabajo(eTrabajo* list, int len, int index, int* id, eBicicleta* listBicicleta, int length, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor)
+int addTrabajo(eTrabajo* list, int len, int index, int* id, eBicicleta* listBicicleta, int length, eTipo* listTipo, int lenTipo, eColor* listColor, int lenColor, eCliente* listCliente, int lenCliente)
 {
     int answer = -1;
     eTrabajo bufferTrabajo;
 
     printf("\n*********************************************ALTA TRABAJO**********************************************\n\n");
 
-    printBicicletas(listBicicleta, length, listTipo, lenTipo, listColor, lenColor);
+    printBicicletas(listBicicleta, length, listTipo, lenTipo, listColor, lenColor, listCliente, lenCliente);
 
     if(list != NULL && len > 0 && index < len && index >= 0 && id != NULL)
     {
